@@ -11,6 +11,7 @@ const user = {
     user: {},
     userProfile: {},
     connexionMessage: "",
+    updateMessage: "",
   },
   mutations: {
     SET_THIS_USER(state, data) {
@@ -18,6 +19,9 @@ const user = {
     },
     SET_CONNEXION_MESSAGE(state, data) {
       state.connexionMessage = data;
+    },
+    SET_UPDATE_MESSAGE(state, data) {
+      state.updateMessage = data;
     },
     auth_request(state) {
       state.status = "loading";
@@ -64,7 +68,7 @@ const user = {
     register({ commit }, user) {
       return new Promise((resolve, reject) => {
         commit("auth_request");
-        console.log("User module register request" + user.data.profil_image)
+        console.log("User module register request" + user.data.profil_image);
         axios({
           url: API_URL + "/users/register/",
           data: user,
@@ -110,6 +114,28 @@ const user = {
               "erreur serveur veuillez vous reconnecter"
             );
             reject(err);
+          });
+      });
+    },
+    update({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        commit("auth_request");
+        axios({
+          url: API_URL + "/users/me/",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          data: data,
+          method: "PUT",
+        })
+          .then((resp) => {
+            commit("SET_UPDATE_MESSAGE", "Image de profil modifié");
+            resolve(resp);
+          })
+          .catch((err, resp) => {
+            commit("auth_error");
+            commit("SET_UPDATE_MESSAGE", "erreur");
+            reject(resp);
           });
       });
     },

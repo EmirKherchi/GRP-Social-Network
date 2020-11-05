@@ -13,7 +13,7 @@
       </div>
 
       <div class="message">
-        <h5>{{ updateMessage }}</h5>
+        <h5>{{ message }}</h5>
       </div>
     </form>
   </div>
@@ -21,7 +21,7 @@
 
 <script>
 // import PictureInput from "vue-picture-input";
-import { mapState } from "vuex";
+import axios from "axios";
 export default {
   name: "UpdateAvatar",
   components: {
@@ -30,10 +30,8 @@ export default {
   data() {
     return {
       file: "",
+      message: "",
     };
-  },
-  computed: {
-    ...mapState("user", ["updateMessage"]),
   },
   methods: {
     onFileSelected() {
@@ -41,15 +39,20 @@ export default {
       this.file = file;
       console.log(this.file);
     },
-    submit() {
+    async submit() {
       const formData = new FormData();
       formData.append("file", this.file);
-      this.$store
-        .dispatch("user/update", formData)
-        .then(() => {
-          this.$store.dispatch("user/profile");
-        })
-        .catch((err) => console.log(err));
+      try {
+        await axios.put("http://localhost:8080/api/users/me/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        this.message = "Mis à jour mother fuck";
+      } catch (err) {
+        console.log(err);
+        this.message = "Un problème ?!  motherfuck  ! ";
+      }
     },
   },
 };
