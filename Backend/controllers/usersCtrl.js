@@ -17,9 +17,7 @@ module.exports = {
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
-    const profil_image = req.body.lastname;
     const is_admin = req.body.is_admin;
-
     if (
       email == null ||
       password == null ||
@@ -51,7 +49,9 @@ module.exports = {
               password: bcryptedPassword,
               firstname: firstname,
               lastname: lastname,
-              profil_image: profil_image,
+              profil_image : `${req.protocol}://${req.get("host")}/images/${
+                req.file.filename
+              }`,
               all_posts: 0,
               all_likes: 0,
               all_dislikes: 0,

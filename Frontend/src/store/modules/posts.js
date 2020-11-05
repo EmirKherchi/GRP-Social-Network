@@ -48,6 +48,9 @@ const posts = {
           commit("auth_request");
           axios({
             url: API_URL + "posts/new/",
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
             data: newPost,
             method: "POST",
           })

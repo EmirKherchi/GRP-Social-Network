@@ -9,7 +9,7 @@ module.exports = {
   createPost: function (req, res) {
     // Params
     const title = req.body.title;
-    const image_post = req.body.image_post;
+    const image_post = req.file;
 
     if (title == null || image_post == null) {
       res.status(400).json({ error: "missing parameters" });
@@ -25,7 +25,9 @@ module.exports = {
           models.Posts.create({
             UserId: userFound.id,
             title: title,
-            image_post: image_post,
+            image_post: `${req.protocol}://${req.get("host")}/images/${
+              req.file.filename
+            }`,
             likes: 0,
             dislikes: 0,
             all_comments: 0,

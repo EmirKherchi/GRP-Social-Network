@@ -5,7 +5,22 @@
       <div class="field">
         <label>Image de profil</label><br />
 
-        <input type="file" ref="file" @change="onFileSelected" />
+        <!-- <input type="file" ref="file" @change="onFileSelected" /> -->
+        <picture-input
+        id="avatar"
+        ref="pictureInput"
+        @change="onFileSelected"
+        :width="300"
+        :crop="false"
+        :hideChangeButton="true"
+        :height="200"
+        accept="image/jpeg, image/png, image/gif"
+        buttonClass="button"
+        :customStrings="{
+          upload: 'Importer votre image',
+          drag: ' Cliquer <br> ou faire un glisser-déposer',
+        }"
+      />
       </div>
 
       <div>
@@ -20,12 +35,12 @@
 </template>
 
 <script>
-// import PictureInput from "vue-picture-input";
 import { mapState } from "vuex";
+import PictureInput from 'vue-picture-input'
 export default {
   name: "UpdateAvatar",
   components: {
-    // PictureInput,
+  PictureInput,
   },
   data() {
     return {
@@ -37,7 +52,7 @@ export default {
   },
   methods: {
     onFileSelected() {
-      const file = this.$refs.file.files[0];
+      const file = this.$refs.pictureInput.file;
       this.file = file;
       console.log(this.file);
     },

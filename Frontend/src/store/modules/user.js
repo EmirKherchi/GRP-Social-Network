@@ -65,18 +65,19 @@ const user = {
       });
     },
 
-    register({ commit }, user) {
+    register({ commit }, user,) {
       return new Promise((resolve, reject) => {
         commit("auth_request");
-        console.log("User module register request" + user.data.profil_image);
         axios({
           url: API_URL + "/users/register/",
-          data: user,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          data:user,
           method: "POST",
         })
           .then((resp) => {
             commit("SET_CONNEXION_MESSAGE", resp.data);
-            console.log("Image uploaded successfully ✨");
             resolve(resp);
           })
           .catch((err, resp) => {
@@ -129,7 +130,7 @@ const user = {
           method: "PUT",
         })
           .then((resp) => {
-            commit("SET_UPDATE_MESSAGE", "Image de profil modifié");
+            commit("SET_UPDATE_MESSAGE", "Image de profil modifiée");
             resolve(resp);
           })
           .catch((err, resp) => {
