@@ -88,7 +88,14 @@ module.exports = {
     }
 
     models.Posts.findOne({
-      attributes: ["id", "title", "image_post", "likes", "dislikes","all_comments"],
+      attributes: [
+        "id",
+        "title",
+        "image_post",
+        "likes",
+        "dislikes",
+        "all_comments",
+      ],
       include: [
         {
           // TODO ajouter les commentaires

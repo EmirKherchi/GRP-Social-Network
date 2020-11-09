@@ -42,6 +42,9 @@ export default {
       });
     },
   },
+  mounted() {
+     this.$store.dispatch('user/profile')
+  },
   
 };
 </script>

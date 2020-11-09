@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 
 const userRouter = require("./routers/usersRtes");
 const postRouter = require("./routers/postsRtes");
+const likeRouter = require("./routers/likesRtes");
 
 // Init Server
 const app = express();
@@ -24,6 +25,7 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/", userRouter);
 app.use("/api/", postRouter);
+app.use("/api/", likeRouter);
 
 //Launch app
 

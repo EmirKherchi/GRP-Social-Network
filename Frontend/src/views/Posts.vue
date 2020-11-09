@@ -44,7 +44,7 @@ export default {
     ...mapState('posts', ['posts'])
   },
  
-  created(){
+  mounted(){
     this.$store.dispatch('posts/loadPosts')
   },
 
