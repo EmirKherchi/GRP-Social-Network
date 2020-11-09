@@ -14,7 +14,7 @@
         :crop="false"
         :hideChangeButton="true"
         :height="200"
-        accept="image/jpeg, image/png, image/gif"
+        accept="image/jpeg, image/png, image/gif,image/jpg"
         buttonClass="button"
         :customStrings="{
           upload: 'Importer votre image',

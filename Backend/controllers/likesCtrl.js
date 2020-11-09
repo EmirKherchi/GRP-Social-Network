@@ -27,11 +27,52 @@ module.exports = {
                   where: {
                     UsersId: userFound.id,
                     PostsId: postFound.id,
-                    Like : 1,
                   },
                 })
-                  .then(function (isUserAlreadyLiked) {
-                    if (isUserAlreadyLiked) {
+                  .then(function (userOpinion) {
+                    if (
+                      userOpinion &&
+                      userOpinion.Like === 0 &&
+                      userOpinion.Dislike === 1
+                    ) {
+                      models.Likes.update(
+                        { Dislike: 0 },
+                        {
+                          where: {
+                            UsersId: userFound.id,
+                            PostsId: postFound.id,
+                          },
+                        }
+                      );
+                      models.Posts.update(
+                        { dislikes: sequelize.literal("dislikes - 1") },
+                        { where: { id: postFound.id } }
+                      );
+                      return res.status(200).json("User old dislike removed");
+                    } else if (
+                      userOpinion &&
+                      userOpinion.Like === 0 &&
+                      userOpinion.Dislike === 0
+                    ) {
+                      models.Likes.update(
+                        { Like: 1 },
+                        {
+                          where: {
+                            UsersId: userFound.id,
+                            PostsId: postFound.id,
+                          },
+                        }
+                      );
+                      models.Posts.update(
+                        { likes: sequelize.literal("likes + 1") },
+                        { where: { id: postFound.id } }
+                      );
+                      return res.status(200).json("User Liked it");
+                    } else if (
+                      userOpinion &&
+                      userOpinion.Like === 1 &&
+                      userOpinion.Dislike === 0
+                    ) {
                       models.Likes.update(
                         { Like: 0 },
                         {
@@ -45,27 +86,22 @@ module.exports = {
                         { likes: sequelize.literal("likes - 1") },
                         { where: { id: postFound.id } }
                       );
-                      return res.status(200).json("like mis à jour");
+                      return res.status(200).json("User old Like removed");
                     } else {
                       newLikes = models.Likes.create({
                         UsersId: userFound.id,
                         PostsId: postFound.id,
                         Like: 1,
-                        Dislike: 0,
                       });
                       models.Posts.update(
                         { likes: sequelize.literal("likes + 1") },
                         { where: { id: postFound.id } }
                       );
-                      return res.status(200).json("like ajouté");
+                      return res.status(200).json("Like ajouté");
                     }
                   })
                   .catch(function (err) {
-                    return res
-                      .status(500)
-                      .json(
-                        "Impossible de vérifier si l'utilisateur à déjà liké"
-                      );
+                    console.log("userGaveHisOpinion: " + err);
                   });
               } else {
                 return res.status(200).json("ne trouve pas l'user");
@@ -104,11 +140,52 @@ module.exports = {
                   where: {
                     UsersId: userFound.id,
                     PostsId: postFound.id,
-                    Dislike: 1,
                   },
                 })
-                  .then(function (isUserAlreadyDisliked) {
-                    if (isUserAlreadyDisliked) {
+                  .then(function (userOpinion) {
+                    if (
+                      userOpinion &&
+                      userOpinion.Like === 1 &&
+                      userOpinion.Dislike === 0
+                    ) {
+                      models.Likes.update(
+                        { Like: 0 },
+                        {
+                          where: {
+                            UsersId: userFound.id,
+                            PostsId: postFound.id,
+                          },
+                        }
+                      );
+                      models.Posts.update(
+                        { likes: sequelize.literal("likes - 1") },
+                        { where: { id: postFound.id } }
+                      );
+                      return res.status(200).json("User old like removed");
+                    } else if (
+                      userOpinion &&
+                      userOpinion.Like === 0 &&
+                      userOpinion.Dislike === 0
+                    ) {
+                      models.Likes.update(
+                        { Dislike: 1 },
+                        {
+                          where: {
+                            UsersId: userFound.id,
+                            PostsId: postFound.id,
+                          },
+                        }
+                      );
+                      models.Posts.update(
+                        { dislikes: sequelize.literal("dislikes + 1") },
+                        { where: { id: postFound.id } }
+                      );
+                      return res.status(200).json("User Disliked it");
+                    } else if (
+                      userOpinion &&
+                      userOpinion.Like === 0 &&
+                      userOpinion.Dislike === 1
+                    ) {
                       models.Likes.update(
                         { Dislike: 0 },
                         {
@@ -122,9 +199,9 @@ module.exports = {
                         { dislikes: sequelize.literal("dislikes - 1") },
                         { where: { id: postFound.id } }
                       );
-                      return res.status(200).json("Dislike supprimé");
+                      return res.status(200).json("User old Dislike removed");
                     } else {
-                      let newDislikes = models.Likes.create({
+                      newLikes = models.Likes.create({
                         UsersId: userFound.id,
                         PostsId: postFound.id,
                         Dislike: 1,
@@ -137,11 +214,7 @@ module.exports = {
                     }
                   })
                   .catch(function (err) {
-                    return res
-                      .status(500)
-                      .json(
-                        "Impossible de vérifier si l'utilisateur à déjà liké"
-                      );
+                    console.log("userGaveHisOpinion: " + err);
                   });
               } else {
                 return res.status(200).json("ne trouve pas l'user");
