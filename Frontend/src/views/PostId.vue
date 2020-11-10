@@ -15,7 +15,8 @@
           :title="post.title"
           :image_post="post.image_post"
         />
-
+        <button @click="likeIt">like</button>
+        <button @click="dislikeIt">dislike</button>
         <SocialBanner
           :likes="post.likes"
           :dislikes="post.dislikes"
@@ -47,6 +48,12 @@ export default {
   methods: {
     GoBack() {
       this.$router.push({ path: `/posts/` });
+    },
+    likeIt() {
+      this.$store.dispatch("likes/likedIt");
+    },
+    dislikeIt() {
+      this.$store.dispatch("likes/dislikedIt");
     },
   },
 };

@@ -48,6 +48,10 @@ module.exports = {
                         { dislikes: sequelize.literal("dislikes - 1") },
                         { where: { id: postFound.id } }
                       );
+                      models.Users.update(
+                        { all_dislikes: sequelize.literal("all_dislikes - 1") },
+                        { where: { id: postFound.UserId } }
+                      );
                       return res.status(200).json("User old dislike removed");
                     } else if (
                       userOpinion &&
@@ -67,7 +71,11 @@ module.exports = {
                         { likes: sequelize.literal("likes + 1") },
                         { where: { id: postFound.id } }
                       );
-                      return res.status(200).json("User Liked it");
+                      models.Users.update(
+                        { all_likes: sequelize.literal("all_likes + 1") },
+                        { where: { id: postFound.UserId } }
+                      );
+                      return res.status(200).json("User liked it again");
                     } else if (
                       userOpinion &&
                       userOpinion.Like === 1 &&
@@ -86,6 +94,10 @@ module.exports = {
                         { likes: sequelize.literal("likes - 1") },
                         { where: { id: postFound.id } }
                       );
+                      models.Users.update(
+                        { all_likes: sequelize.literal("all_likes - 1") },
+                        { where: { id: postFound.UserId } }
+                      );
                       return res.status(200).json("User old Like removed");
                     } else {
                       newLikes = models.Likes.create({
@@ -97,7 +109,11 @@ module.exports = {
                         { likes: sequelize.literal("likes + 1") },
                         { where: { id: postFound.id } }
                       );
-                      return res.status(200).json("Like ajouté");
+                      models.Users.update(
+                        { all_likes: sequelize.literal("all_likes + 1") },
+                        { where: { id: postFound.UserId } }
+                      );
+                      return res.status(200).json("User liked it");
                     }
                   })
                   .catch(function (err) {
@@ -161,6 +177,10 @@ module.exports = {
                         { likes: sequelize.literal("likes - 1") },
                         { where: { id: postFound.id } }
                       );
+                      models.Users.update(
+                        { all_likes: sequelize.literal("all_likes - 1") },
+                        { where: { id: postFound.UserId } }
+                      );
                       return res.status(200).json("User old like removed");
                     } else if (
                       userOpinion &&
@@ -180,7 +200,11 @@ module.exports = {
                         { dislikes: sequelize.literal("dislikes + 1") },
                         { where: { id: postFound.id } }
                       );
-                      return res.status(200).json("User Disliked it");
+                      models.Users.update(
+                        { all_dislikes: sequelize.literal("all_dislikes + 1") },
+                        { where: { id: postFound.UserId } }
+                      );
+                      return res.status(200).json("User Disliked it again");
                     } else if (
                       userOpinion &&
                       userOpinion.Like === 0 &&
@@ -199,6 +223,10 @@ module.exports = {
                         { dislikes: sequelize.literal("dislikes - 1") },
                         { where: { id: postFound.id } }
                       );
+                      models.Users.update(
+                        { all_dislikes: sequelize.literal("all_dislikes - 1") },
+                        { where: { id: postFound.UserId } }
+                      );
                       return res.status(200).json("User old Dislike removed");
                     } else {
                       newLikes = models.Likes.create({
@@ -209,6 +237,10 @@ module.exports = {
                       models.Posts.update(
                         { dislikes: sequelize.literal("dislikes + 1") },
                         { where: { id: postFound.id } }
+                      );
+                      models.Users.update(
+                        { all_dislikes: sequelize.literal("all_dislikes + 1") },
+                        { where: { id: postFound.UserId } }
                       );
                       return res.status(200).json("Dislike ajouté");
                     }
