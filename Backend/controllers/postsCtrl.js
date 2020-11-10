@@ -1,4 +1,5 @@
 //Imports
+
 const models = require("../models");
 const { sequelize } = require("../models");
 //constante
@@ -98,8 +99,6 @@ module.exports = {
       ],
       include: [
         {
-          // TODO ajouter les commentaires
-
           model: models.Users,
           attributes: ["firstname", "lastname", "profil_image"],
         },

@@ -42,7 +42,7 @@ export default {
   computed: {
     ...mapState("posts", ["post"]),
   },
-  mounted() {
+  beforeMount() {
     this.$store.dispatch("posts/loadPost");
   },
   methods: {

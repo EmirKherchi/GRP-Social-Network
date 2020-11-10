@@ -26,10 +26,9 @@ const user = {
     auth_request(state) {
       state.status = "loading";
     },
-    auth_success(state, token, user) {
+    auth_success(state, token) {
       state.status = "success";
       state.token = token;
-      state.user = user;
     },
     auth_error(state) {
       state.status = "error";
@@ -50,10 +49,9 @@ const user = {
         })
           .then((resp) => {
             const token = resp.data.token;
-            const user = resp.data.Id;
             localStorage.setItem("token", token);
             axios.defaults.headers.common["Authorization"] = "Bearer " + token; // set default headers with the token from response for next request
-            commit("auth_success", token, user);
+            commit("auth_success", token);
             resolve(resp);
           })
           .catch((err) => {
