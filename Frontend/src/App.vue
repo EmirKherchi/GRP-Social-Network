@@ -13,7 +13,9 @@
           />
         </router-link>
         <span class="logout" v-if="isLoggedIn"
-          ><a @click="logout">Logout</a></span
+          ><a @click="logout"> <b-button variant="danger" class="mb-2">
+      <b-icon icon="power" aria-hidden="true"></b-icon> 
+    </b-button></a></span
         >
       </div>
     </div>
@@ -93,8 +95,7 @@ export default {
       
     }
     p {
-      color: #2c3e50;
-      font-weight: bold;
+     display: none;
     }
   }
 }

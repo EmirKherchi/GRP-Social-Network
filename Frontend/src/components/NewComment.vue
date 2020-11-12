@@ -19,7 +19,8 @@
   Quelque chose à ajouter....
 </textarea
       >
-      <div><button type="submit">Poster votre publication</button></div>
+      <div><b-btn variant="primary" type="submit">Poster votre publication</b-btn></div>
+     
       <hr />
     </form>
   </div>
