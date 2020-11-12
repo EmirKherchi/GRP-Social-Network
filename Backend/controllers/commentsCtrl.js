@@ -39,7 +39,7 @@ module.exports = {
                         { where: { id: postFound.id } }
                       );
                     }
-                    return res.status(201).json("comment validate");
+                    return res.status(201).json(newComment);
                   })
                   .catch(function (err) {
                     return res.status(500).json(err);

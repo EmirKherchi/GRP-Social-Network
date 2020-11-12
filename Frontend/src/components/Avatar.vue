@@ -41,17 +41,19 @@ export default {
 
   &__imageProfile {
     border-radius: 3%;
-    max-width: 30px;
+    max-width: 40px;
     height: auto;
   }
   &__username {
     margin-left: 10px;
     align-self: center;
+     text-decoration: none;
 
     & > p {
       margin: 0;
       color: rgb(190, 190, 190);
       font-weight: 100;
+       text-decoration: none;
     }
   }
 }

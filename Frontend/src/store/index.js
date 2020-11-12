@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import posts from './modules/posts'
 import user from './modules/user'
 import likes from './modules/likes'
+import comments from './modules/comments'
 
 
 
@@ -19,5 +20,6 @@ export default new Vuex.Store({
     posts,
     user,
     likes,
+    comments,
   }
 })
