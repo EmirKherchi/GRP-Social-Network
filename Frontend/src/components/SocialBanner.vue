@@ -1,10 +1,13 @@
 <template>
   <div class="SocialBanner container">
       <p class="SocialBanner--elements">
-       Likes: {{ likes }}
-        Dislikes: {{ dislikes }}
-       Commentaires:  {{ comments }}
+        <b-icon class = "icons" icon="hand-thumbs-up"></b-icon>: <span class="icons_content">{{ likes }}</span> 
+         <b-icon class = "icons" icon="hand-thumbs-down"></b-icon>: <span class="icons_content">{{ dislikes }}</span> 
+        <b-icon class = "icons" icon="chat-dots"></b-icon>:   <span class="icons_content">{{ comments }}</span> 
+
       </p>
+  
+  <hr>
   </div>
 </template>
 
@@ -38,8 +41,12 @@ export default {
   }
   .icons{
     font-size: 25px;
-    margin-right: 2px;
+    margin-right: 5px;
     margin-left: 25px;
+    &_content{
+      font-weight: 600;
+      color:#263238;
+    }
   }
 }
 </style>

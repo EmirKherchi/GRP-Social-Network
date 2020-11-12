@@ -1,6 +1,5 @@
 <template>
   <div class="Post">
-    <h1>All Posts</h1>
 
     <div class="Posts">
       <ul class="Posts__list">
@@ -55,15 +54,17 @@ export default {
 
 <style lang="scss" scoped>
 .Posts {
+  background: #f2f3f7;
   display: block;
+  padding-top: 100px;
   &__list {
     padding-inline-start: 0px;
     display: block;
     margin: auto;
-    width: 80%;
+    width: 70%;
     &--element {
       list-style: none;
-      max-width: 760px;
+      max-width: 600px;
       display: block;
       margin: auto;
     }

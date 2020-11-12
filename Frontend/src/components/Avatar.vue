@@ -46,7 +46,7 @@ export default {
 
     & > p {
       margin: 0;
-      color: rgb(190, 190, 190);
+      color: #4f5b62;
       font-weight: 100;
        text-decoration: none;
     }

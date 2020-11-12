@@ -3,7 +3,7 @@
     <Login class="login" />
     <div class="register">
       <p>
-        Si vous n'avez pas de compte suivez le liens suivant
+        Si vous n'avez pas de compte suivez le lien suivant : 
         <router-link class="link" to="/inscription">Inscription</router-link>
       </p>
     </div>
@@ -22,15 +22,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .login {
+  
   margin-top: 100px;
 }
 .register {
   margin-top: 25px;
   p {
     margin-top: 25px;
-    color: black;
+    color: #000a12;
     .link {
-      color: black;
+      color: #0f4c81;
       font-weight: 600;
     }
   }

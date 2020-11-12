@@ -1,7 +1,7 @@
 <template>
   <div class="OnePost" @click.once="sendRequest">
     <div class="OnePost__header">
-      <h2 class="OnePost__header--title">{{ title }}</h2>
+      <h3 class="OnePost__header--title">{{ title }}</h3>
     </div>
 
     <div class="OnePost__body">
@@ -44,7 +44,7 @@ export default {
 <style scoped lang="scss">
 .OnePost {
   margin: 5px 0px 40px 0px;
-  border-bottom: 1px solid #999;
+  
   border-radius: 3px;
   cursor: pointer;
   &__header {
@@ -61,7 +61,7 @@ export default {
     &--image {
       margin: 25px 0 50px 0;
       width: 100%;
-      max-width: 800px;
+      max-width: 500px;
       height: auto;
     }
   }
