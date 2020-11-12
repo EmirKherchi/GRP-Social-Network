@@ -108,10 +108,6 @@ const user = {
             router.push("/connexion");
             localStorage.removeItem("token");
             delete axios.defaults.headers.common["Authorization"];
-            commit(
-              "SET_CONNEXION_MESSAGE",
-              "erreur serveur veuillez vous reconnecter"
-            );
             reject(err);
           });
       });

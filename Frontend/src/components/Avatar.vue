@@ -3,7 +3,8 @@
     <div class="Avatar__username">
       <p>{{ UserFirstname }} {{ UserLastname }}</p>
     </div>
-    <img class="Avatar__imageProfile" :src="profil_image" :alt="fullNameAlt" />
+
+    <b-avatar :src="profil_image" :alt="fullNameAlt"></b-avatar>
   </div>
 </template>
 
@@ -38,12 +39,6 @@ export default {
   flex-wrap: nowrap;
   flex-direction: row-reverse;
   justify-content: flex-end;
-
-  &__imageProfile {
-    border-radius: 3%;
-    max-width: 40px;
-    height: auto;
-  }
   &__username {
     margin-left: 10px;
     align-self: center;
