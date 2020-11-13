@@ -1,29 +1,25 @@
 <template>
-  <div>
+  <b-container>
     <form
       enctype="multipart/form-data"
       class="addPost"
       @submit.prevent="submitComment"
     >
-      <h1>Nouveau commentaire</h1>
-
-      <label for="content">Votre commentaire</label>
-      <textarea
+      <h4>Quelque chose à ajouter....</h4>
+      <b-form-textarea
         required
         v-model="content"
         id="content"
         name="content"
-        rows="5"
-        cols="33"
       >
-  Quelque chose à ajouter....
-</textarea
-      >
-      <div><b-btn variant="primary" type="submit">Poster votre publication</b-btn></div>
-     
+      </b-form-textarea>
+      <div>
+        <b-btn variant="primary" type="submit">Poster votre commentaire</b-btn>
+      </div>
+
       <hr />
     </form>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -39,10 +35,24 @@ export default {
       let data = {
         content: this.content,
       };
-      this.$store.dispatch("comments/newComment", data);
+      this.$store.dispatch("comments/newComment", data)
+      this.content = "";
+    
     },
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+h4 {
+  margin: 2%; 
+}
+button {
+  margin-top: 2%;
+  background: #0f4c81;
+  border:#0f4c81;
+  &:hover{
+    background: #002554;
+  }
+}
+</style>

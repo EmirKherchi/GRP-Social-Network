@@ -8,7 +8,7 @@
               fluid
               src="./assets/Images/icon-left-font-monochrome-white.png"
               alt="Logo Groupomania social network"
-              class="d-inline-block align-top"
+              class=" logo d-inline-block align-top"
             ></b-img>
           </b-navbar-brand>
         </router-link>
@@ -31,7 +31,11 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item>
-              <router-link v-if="isLoggedIn" to="/userboard">
+              <router-link
+                class="avatar_link"
+                v-if="isLoggedIn"
+                to="/userboard"
+              >
                 <Avatar
                   class="Avatar"
                   :UserFirstname="userProfile.firstname"
@@ -93,8 +97,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #242f3a;
-  
+  ul{
+    li{
+    list-style: none;
+    }
+  }
   .navbar {
+    margin: auto;
+    padding: 10px 50px;
+    .logo {
+      max-width: 200px;
+      margin-right: 10px;
+    }
     background-color: #263238 !important;
     &-brand {
       width: 20%;
@@ -125,14 +139,16 @@ export default {
       }
     }
   }
+  .avatar_link {
+    text-decoration: none;
+  }
   .Avatar {
     justify-content: center;
+    margin-left: 5px;
 
-    margin-left: 8px;
-    margin-bottom: 8px;
-
-    p {
-      display: none;
+    :hover {
+      text-decoration: none;
+      color: #fff;
     }
   }
 }

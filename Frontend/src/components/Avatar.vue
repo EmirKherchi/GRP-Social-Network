@@ -14,7 +14,7 @@ export default {
   props: {
     UserFirstname: {
       type: String,
-       default: "User",
+      default: "User",
     },
     UserLastname: {
       type: String,
@@ -42,13 +42,12 @@ export default {
   &__username {
     margin-left: 10px;
     align-self: center;
-     text-decoration: none;
+    text-decoration: none;
 
     & > p {
       margin: 0;
-      color: #4f5b62;
+      color: rgb(190, 190, 190);
       font-weight: 100;
-       text-decoration: none;
     }
   }
 }

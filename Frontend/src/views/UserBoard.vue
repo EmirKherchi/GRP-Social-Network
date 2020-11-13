@@ -33,7 +33,7 @@ export default {
 img {
   margin-top: 50px;
   width: 100%;
-  max-width: 400px;
+  max-width: 200px;
   height: auto;
 }
 </style>

@@ -69,7 +69,6 @@ module.exports = {
       .then(function (postFound) {
         if (postFound) {
           models.Comments.findAll({
-            order: [["createdAt", "DESC"]],
             where: { PostId: postFound.id },
             include: [
               {

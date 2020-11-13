@@ -15,7 +15,6 @@ export default {
       Required: true,
     },
   },
-  methods: {},
 };
 </script>
 
@@ -25,10 +24,9 @@ export default {
   margin: 5px 0px 40px 0px;
   border-bottom: 1px solid #ccc;
   border-radius: 3px;
-  cursor: pointer;
-  &__header {
-    margin-top: 40px;
-    margin-bottom: 25px;
+  text-align: left;
+  p{
+    margin: 2% ;
   }
 }
 </style>

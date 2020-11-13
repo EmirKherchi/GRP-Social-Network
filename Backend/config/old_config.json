@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "emir",
-    "password": "Belfast2009",
-    "database": "Groupomania",
-    "host": "127.0.0.1",
+    "username": "sql7367180",
+    "password": "MtttVeN7KG",
+    "database": "sql7367180",
+    "host": "sql7.freemysqlhosting.net",
     "dialect": "mysql"
   },
   "test": {
