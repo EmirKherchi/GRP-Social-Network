@@ -1,32 +1,26 @@
 <template>
- <div>
-     <Register
-     class="register"/>
-      <div class="login">
+  <div>
+    <Register class="register" />
+    <div class="login">
       <p>
         <router-link class="link" to="/connexion">Se Connecter</router-link>
       </p>
-      </div>
- </div>
+    </div>
+  </div>
 </template>
 
 <script>
-
-
 import Register from "@/components/Register";
 
 export default {
   name: "Inscription",
   components: {
- 
-    Register
-    },
-  
+    Register,
+  },
 };
 </script>
 <style lang="scss" scoped>
 .register {
-  
   margin-top: 100px;
 }
 .login {

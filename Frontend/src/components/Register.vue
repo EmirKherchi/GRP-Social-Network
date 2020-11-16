@@ -161,7 +161,7 @@ export default {
       margin-top: 35px;
     }
     .input {
-      width: 30%;
+      width: 40%;
       display: block;
       margin: auto;
     }

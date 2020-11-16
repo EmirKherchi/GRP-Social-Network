@@ -43,7 +43,7 @@ export default {
     margin-left: 10px;
     align-self: center;
     text-decoration: none;
-
+    text-transform: capitalize;
     & > p {
       margin: 0;
       color: rgb(190, 190, 190);

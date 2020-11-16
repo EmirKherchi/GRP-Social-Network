@@ -91,15 +91,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+html {
+  background: #f2f3f7;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Noto Sans', sans-serif;
   text-align: center;
   color: #242f3a;
-  ul{
-    li{
-    list-style: none;
+  background: #f2f3f7;
+  ul {
+    li {
+      list-style: none;
     }
   }
   .navbar {

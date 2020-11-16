@@ -3,28 +3,26 @@
     <h4>Modifier votre image de profil</h4>
     <form enctype="multipart/form-data" @submit.prevent="submit">
       <div class="field">
-        <label>Image de profil</label><br />
-
         <!-- <input type="file" ref="file" @change="onFileSelected" /> -->
         <picture-input
-        id="avatar"
-        ref="pictureInput"
-        @change="onFileSelected"
-        :width="300"
-        :crop="false"
-        :hideChangeButton="true"
-        :height="200"
-        accept="image/jpeg, image/png, image/gif,image/jpg"
-        buttonClass="button"
-        :customStrings="{
-          upload: 'Importer votre image',
-          drag: ' Cliquer <br> ou faire un glisser-déposer',
-        }"
-      />
+          id="avatar"
+          ref="pictureInput"
+          @change="onFileSelected"
+          :width="300"
+          :crop="false"
+          :hideChangeButton="true"
+          :height="200"
+          accept="image/jpeg, image/png, image/gif,image/jpg"
+          buttonClass="button"
+          :customStrings="{
+            upload: 'Importer votre image',
+            drag: ' Cliquer <br> ou faire un glisser-déposer',
+          }"
+        />
       </div>
 
       <div>
-        <button type="submit">Envoyé</button>
+        <b-button class="btn" type="submit">Modifier</b-button>
       </div>
 
       <div class="message">
@@ -36,11 +34,11 @@
 
 <script>
 import { mapState } from "vuex";
-import PictureInput from 'vue-picture-input'
+import PictureInput from "vue-picture-input";
 export default {
   name: "UpdateAvatar",
   components: {
-  PictureInput,
+    PictureInput,
   },
   data() {
     return {
@@ -73,11 +71,19 @@ export default {
 <style lang="scss" scoped>
 .file {
   margin: 100px 0;
+  h4 {
+    margin: 2%;
+  }
   & input {
     margin: 20px;
   }
   & button {
-    margin: 20px 0;
+    margin: 2%;
+    background: #0f4c81;
+    border: #0f4c81;
+    &:hover {
+      background: #002554;
+    }
   }
 }
 </style>

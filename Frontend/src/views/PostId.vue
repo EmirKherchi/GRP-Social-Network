@@ -113,10 +113,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .OnePost {
+  background: #f2f3f7;
   .pulse {
     animation-name: pulse;
     animation-duration: 1s;
-    color: #0f4c81;
     font-weight: 900;
   }
   @keyframes pulse {
