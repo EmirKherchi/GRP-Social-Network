@@ -106,7 +106,7 @@ module.exports = {
           ) {
             if (resBcrypt) {
               const token = jwt.sign(
-                { id: usersFound.id },
+                { id: usersFound.id, is_admin: usersFound.is_admin, },
                 "fAM6zvYJ3uK?6xEyUaJ-Yqu%FL9G34",
                 {
                   expiresIn: "24h",
@@ -115,6 +115,7 @@ module.exports = {
 
               return res.status(200).json({
                 Id: usersFound.id,
+                is_admin: usersFound.is_admin,
                 token: token,
               });
             } else {

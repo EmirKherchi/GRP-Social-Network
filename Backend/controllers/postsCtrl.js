@@ -115,4 +115,40 @@ module.exports = {
         return res.status(500).json({ error: "Post not available" });
       });
   },
+  deleteOnePost: function (req, res) {
+    const idPost = req.params.id;
+
+    if (idPost == null) {
+      res.status(400).json({ error: "missing parameters" });
+    }
+    models.Posts.findOne({
+      where: { id: idPost },
+    })
+      .then(function (onePost) {
+        if (onePost) {
+          const user = onePost.UserId;
+          const likes = onePost.likes;
+          const dislikes = onePost.dislikes;
+          onePost.destroy();
+          models.Users.update(
+            { all_posts: sequelize.literal("all_posts - 1") },
+            { where: { id: user } }
+          );
+          models.Users.update(
+            { all_likes: sequelize.literal(`all_likes - ${likes}`) },
+            { where: { id: user } }
+          );
+          models.Users.update(
+            { all_dislikes: sequelize.literal(`all_dislikes - ${dislikes}`)},
+            { where: { id: user } }
+          );
+          return res.status(200).json(" post supprimé ");
+        } else {
+          return res.status(404).json({ error: "Post not found" });
+        }
+      })
+      .catch(function (err) {
+        res.status(500).json({ error: "invalid request" });
+      });
+  },
 };

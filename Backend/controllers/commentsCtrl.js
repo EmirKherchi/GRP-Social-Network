@@ -85,12 +85,49 @@ module.exports = {
               }
             })
             .catch(function (err) {
-              return res.status(500).json({ err});
+              return res.status(500).json({ err });
             });
         }
       })
       .catch(function (err) {
-        return res.status(500).json({ err});
+        return res.status(500).json({ err });
+      });
+  },
+  deleteOneComment: function (req, res) {
+    const idPost = req.params.id;
+    const comment = req.body.comment;
+
+    if (idPost == null) {
+      res.status(400).json({ error: "missing parameters" });
+    }
+    models.Posts.findOne({
+      where: { id: idPost },
+    })
+      .then(function (onePost) {
+        if (onePost) {
+          models.Comments.findOne({
+            where: { id: comment },
+          })
+            .then(function (oneComment) {
+              if (oneComment) {
+                
+                oneComment.destroy();
+                models.Posts.update(
+                  { all_comments: sequelize.literal("all_comments - 1") },
+                  { where: { id: idPost } }
+                );
+                return res.status(200).json(" commentaire supprimé ");
+              }
+            })
+            .catch(function () {
+              return res.status(404).json({ error: "Comment not found" });
+            });
+        } else {
+          return res.status(404).json({ error: "Post not found" });
+        }
+      })
+      .catch(function (err) {
+        res.status(500).json({ error: "invalid request" });
       });
   },
 };

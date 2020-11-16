@@ -36,7 +36,7 @@
         :comments="post.all_comments"
       />
     </div>
-    <p>{{ copyright }}</p>
+    
     <div class="newComment">
       <NewComment />
     </div>

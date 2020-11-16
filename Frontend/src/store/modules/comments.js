@@ -41,7 +41,7 @@ const comments = {
         .then((response) => {
           commit("SET_NEW_COMMENT", response);
           setTimeout(function() {
-            dispatch("comments/loadComments", null, { root: true })
+            dispatch("loadComments")
             dispatch("posts/loadPost", null, { root: true });
           }, 1000);
         })
