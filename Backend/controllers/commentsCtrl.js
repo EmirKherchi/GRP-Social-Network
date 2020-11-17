@@ -110,7 +110,6 @@ module.exports = {
           })
             .then(function (oneComment) {
               if (oneComment) {
-                
                 oneComment.destroy();
                 models.Posts.update(
                   { all_comments: sequelize.literal("all_comments - 1") },

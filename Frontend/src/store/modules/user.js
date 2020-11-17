@@ -134,6 +134,23 @@ const user = {
           });
       });
     },
+    delete({commit,dispatch }) {
+      return new Promise((resolve, reject) => {
+        axios({
+          url: API_URL + "/users/me",
+          method: "DELETE",
+        })
+          .then((resp) => {
+            dispatch("logout");
+            commit("SET_CONNEXION_MESSAGE", "Votre profil est supprimé");
+            resolve(resp);
+          })
+          .catch((err) => {
+            console.log(err)
+            reject(err);
+          });
+      });
+    },
   },
   getters: {
     isLoggedIn: (state) => !!state.token,

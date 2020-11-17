@@ -70,7 +70,7 @@ export default {
 
 <style lang="scss" scoped>
 .file {
-  margin: 100px 0;
+  margin-top: 100px;
   h4 {
     margin: 2%;
   }

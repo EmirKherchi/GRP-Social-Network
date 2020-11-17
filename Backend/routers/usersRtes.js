@@ -14,5 +14,6 @@ router.post("/users/register/",multer, usersCtrl.register);
 router.post("/users/login/", usersCtrl.login);
 router.get("/users/me/", auth, usersCtrl.GetUserProfil);
 router.put("/users/me/", auth, multer, usersCtrl.updateUserProfil);
+router.delete("/users/me/", auth, usersCtrl.deleteOneUser);
 
 module.exports = router;

@@ -49,7 +49,7 @@ module.exports = {
               password: bcryptedPassword,
               firstname: firstname,
               lastname: lastname,
-              profil_image : `${req.protocol}://${req.get("host")}/images/${
+              profil_image: `${req.protocol}://${req.get("host")}/images/${
                 req.file.filename
               }`,
               all_posts: 0,
@@ -106,7 +106,7 @@ module.exports = {
           ) {
             if (resBcrypt) {
               const token = jwt.sign(
-                { id: usersFound.id, is_admin: usersFound.is_admin, },
+                { id: usersFound.id, is_admin: usersFound.is_admin },
                 "fAM6zvYJ3uK?6xEyUaJ-Yqu%FL9G34",
                 {
                   expiresIn: "24h",
@@ -147,9 +147,41 @@ module.exports = {
     }
   },
 
+  deleteOneUser: async (req, res) => {
+    const idUser = req.user.id;
+    if (idUser == null) {
+      res.status(400).json({ error: "missing parameters" });
+    }
+    models.Users.findOne({
+      where: { id: idUser },
+    })
+      .then(function (userFound) {
+        if (userFound) {
+
+          // models.Comments.findAll({
+          //   where: { UserId: userFound.id },
+          // })
+          //   .then(function (allUserComments) {
+          //     if (allUserComments) {
+          //     }
+          //   })
+          //   .catch(function (err) {
+          //     return res.status(404).json(err);
+          //   });
+
+          userFound.destroy();
+          return res.status(200).json(userFound + "supprimé");
+        } else {
+          return res.status(404).json({ error: "user not found" });
+        }
+      })
+      .catch(function (err) {
+        res.status(500).json({ err });
+      });
+  },
+
   updateUserProfil: function (req, res) {
     //params
-   
 
     models.Users.findOne({
       attributes: ["id", "profil_image"],
@@ -159,17 +191,17 @@ module.exports = {
         profil_image = req.file;
         users
           .update({
-            profil_image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+            profil_image: `${req.protocol}://${req.get("host")}/images/${
+              req.file.filename
+            }`,
           })
           .then(function () {
             return res.status(201).json(users);
           })
           .catch(function (err) {
-            return res.status(500).json(
-    
-              console.log('This is the invalid field ->', err.field)
-              )
-            
+            return res
+              .status(500)
+              .json(console.log("This is the invalid field ->", err.field));
           });
       } else {
         res.status(404).json("Utilisateur non trouvé");

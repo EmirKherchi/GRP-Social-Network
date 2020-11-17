@@ -139,7 +139,7 @@ module.exports = {
             { where: { id: user } }
           );
           models.Users.update(
-            { all_dislikes: sequelize.literal(`all_dislikes - ${dislikes}`)},
+            { all_dislikes: sequelize.literal(`all_dislikes - ${dislikes}`) },
             { where: { id: user } }
           );
           return res.status(200).json(" post supprimé ");

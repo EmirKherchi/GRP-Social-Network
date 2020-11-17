@@ -27,19 +27,29 @@
     </div>
     <hr />
     <UpdateAvatar />
+    <DeleteBtn class="deleteBtn" @click.native="deleteUser" />
   </b-container>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import UpdateAvatar from "@/components/UpdateAvatar";
+import DeleteBtn from "@/components/DeleteBtn";
 export default {
   name: "UserBoard",
   components: {
     UpdateAvatar,
+    DeleteBtn,
   },
   computed: {
     ...mapState("user", ["userProfile"]),
+  },
+  methods: {
+    deleteUser() {
+      this.$store.dispatch("user/delete").then(() => {
+        this.$router.push("/connexion");
+      });
+    },
   },
 };
 </script>
@@ -48,11 +58,12 @@ export default {
 .userBoard {
   padding: 25px 0 0px 0;
   margin-top: 80px;
+  margin-bottom: 25px;
   background: #263238;
   color: #fff;
   hr {
     width: 50%;
-   
+
     background-color: #f2f3f7;
   }
   &--name {
@@ -87,6 +98,9 @@ export default {
         height: auto;
       }
     }
+  }
+  .deleteBtn {
+    margin: 0px 0 25px 0;
   }
 }
 </style>
