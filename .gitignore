@@ -18,13 +18,9 @@ npm-debug.log*
 Backend/config/config.json
 Backend/images
 Backend/node_modules
-Backend/package.json
-Backend/package-lock.json
+
 
 
 #Front
 Frontend/node_modules
-Frontend/package.json
-Frontend/package-lock.json
-Frontend/.browserslistrc
-Frontend/.eslintrc.js
+diagrame.mwb
