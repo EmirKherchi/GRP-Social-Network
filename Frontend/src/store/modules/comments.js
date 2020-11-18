@@ -31,22 +31,38 @@ const comments = {
     },
     newComment({ commit, dispatch }, content) {
       let id = router.currentRoute.params.id;
-      console.log(content);
       axios({
         url: API_URL + `posts/${id}/comment/new/`,
         data: content,
         method: "POST",
       })
-
         .then((response) => {
           commit("SET_NEW_COMMENT", response);
           setTimeout(function() {
-            dispatch("loadComments")
+            dispatch("loadComments");
             dispatch("posts/loadPost", null, { root: true });
           }, 1000);
         })
         .catch((error) => {
           console.log(error);
+        });
+    },
+    deleteComment({ dispatch }, comment) {
+      let id = router.currentRoute.params.id;
+      axios({
+        url: API_URL + `posts/${id}/comment/`,
+        data: comment,
+        method: "DELETE",
+      })
+        .then((resp) => {
+          setTimeout(function() {
+            dispatch("loadComments");
+            dispatch("posts/loadPost", null, { root: true });
+          }, 1000);
+          console.log(resp.data);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
   },

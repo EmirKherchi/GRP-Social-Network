@@ -1,8 +1,14 @@
 <template>
   <b-container class="OnePost">
-    <b-button variant="danger"
+    <b-button class="goBack" variant="danger"
       ><b-icon @click="GoBack" icon="arrow-left"></b-icon
     ></b-button>
+   <DeleteBtn
+            v-if="isAdmin"
+            :supprimer="deleteThis"
+            class="deleteBtn"
+            @click.native="deletePost()"
+          />
 
     <div class="OnePost__list">
       <Avatar
@@ -36,7 +42,7 @@
         :comments="post.all_comments"
       />
     </div>
-    
+
     <div class="newComment">
       <NewComment />
     </div>
@@ -52,8 +58,12 @@
             :UserLastname="comment.User.lastname"
             :profil_image="comment.User.profil_image"
           />
-          <OneComment
-            :contentComment="comment.content"
+          <OneComment :contentComment="comment.content" />
+          <DeleteBtn
+            v-if="isAdmin"
+            :supprimer="deleteThis"
+            class="deleteBtn"
+            @click.native="deleteComment(comment.id)"
           />
         </li>
       </ul>
@@ -68,6 +78,7 @@ import OneComment from "@/components/OneComment";
 import NewComment from "@/components/NewComment";
 import Avatar from "@/components/Avatar";
 import SocialBanner from "@/components/SocialBanner";
+import DeleteBtn from "@/components/DeleteBtn";
 export default {
   name: "PostId",
   components: {
@@ -76,16 +87,24 @@ export default {
     SocialBanner,
     OneComment,
     NewComment,
+    DeleteBtn,
   },
   data() {
     return {
       pulseLike: false,
       pulseDislike: false,
+      deleteThis: "Supprimer",
+      
+      
+      
     };
   },
   computed: {
     ...mapState("posts", ["post"]),
     ...mapState("comments", ["comments"]),
+    isAdmin: function() {
+      return this.$store.getters["user/isAdmin"];
+    },
   },
   beforeMount() {
     this.$store.dispatch("posts/loadPost");
@@ -107,6 +126,15 @@ export default {
     },
     animate() {
       this.animated = true;
+    },
+    deleteComment(commentId) {
+      let data = {
+        comment: commentId,
+      };
+      this.$store.dispatch("comments/deleteComment", data);
+    },
+     deletePost() {
+      this.$store.dispatch("posts/deletePost");
     },
   },
 };
@@ -140,6 +168,7 @@ export default {
       margin: auto;
       max-width: 500px;
     }
+
     .likeornot {
       .icons {
         font-size: 3rem;
@@ -153,13 +182,19 @@ export default {
       margin: 50px;
     }
   }
-  button {
+  .goBack {
     margin: 5%;
     font-size: 25px;
 
     svg {
       margin-top: 5px;
     }
+  }
+  .Comments_list {
+    margin-bottom: 100px;
+  }
+  .deleteBtn {
+    display: inline;
   }
 }
 </style>

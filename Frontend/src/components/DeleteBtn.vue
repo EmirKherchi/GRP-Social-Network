@@ -1,10 +1,16 @@
 <template>
-    <b-button variant="danger">Supprimer le profil</b-button>
+    <b-button variant="danger">{{ supprimer }}</b-button>
 </template>
 
 <script>
 export default {
     name:"DeleteBtn",
+     props: {
+    supprimer: {
+      type: String,
+      Required: true,
+    },
+  },
 
 }
 </script>

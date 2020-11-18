@@ -63,7 +63,23 @@ const posts = {
               reject(resp);
             });
         });
-      }
+      },
+      deletePost() {
+        let id = router.currentRoute.params.id;
+        axios({
+          url: API_URL + `posts/${id}/`,
+          method: "DELETE",
+        })
+          .then((resp) => {
+            setTimeout(function() {
+             router.push({ path: `/posts` })
+            }, 1000);
+            console.log(resp.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
   },
   
 };

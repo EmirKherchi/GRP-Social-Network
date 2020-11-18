@@ -1,20 +1,28 @@
 <template>
   <div class="OneComment">
     <div class="OneComment__body">
-      <p>{{ contentComment }}</p>
+      <p> {{ contentComment }}</p>
+     
+
     </div>
     
   </div>
+  
 </template>
 <script>
+
 export default {
   name: "OneComment",
+   
+
   props: {
     contentComment: {
       type: String,
       Required: true,
     },
   },
+  
+  
 };
 </script>
 
@@ -24,9 +32,14 @@ export default {
   margin: 5px 0px 40px 0px;
   border-bottom: 1px solid #ccc;
   border-radius: 3px;
-  text-align: left;
+ 
+  &__body{
+     text-align: left;
+  }
   p{
     margin: 2% ;
   }
+  
 }
+
 </style>

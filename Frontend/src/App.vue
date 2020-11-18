@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+   
     <div id="nav">
+      
       <b-navbar class="navbar" toggleable="lg" type="dark" variant="dark">
         <router-link to="/posts">
           <b-navbar-brand class="navbar-brand">
@@ -58,9 +60,11 @@
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
+       <b-alert show variant="danger" v-if="isAdmin">Vous utilisez un profil Administrateur</b-alert>
     </div>
 
     <router-view />
+    
   </div>
 </template>
 
@@ -74,6 +78,9 @@ export default {
   computed: {
     isLoggedIn: function() {
       return this.$store.getters["user/isLoggedIn"];
+    },
+     isAdmin: function() {
+      return this.$store.getters["user/isAdmin"];
     },
     ...mapState("user", ["userProfile"]),
   },

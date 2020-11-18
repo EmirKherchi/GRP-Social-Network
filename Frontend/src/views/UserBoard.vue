@@ -27,7 +27,11 @@
     </div>
     <hr />
     <UpdateAvatar />
-    <DeleteBtn class="deleteBtn" @click.native="deleteUser" />
+    <DeleteBtn
+      :supprimer="deleteProfile"
+      class="deleteBtn"
+      @click.native="deleteUser"
+    />
   </b-container>
 </template>
 
@@ -40,6 +44,11 @@ export default {
   components: {
     UpdateAvatar,
     DeleteBtn,
+  },
+  data() {
+    return {
+      deleteProfile: "Supprimer votre profil",
+    };
   },
   computed: {
     ...mapState("user", ["userProfile"]),

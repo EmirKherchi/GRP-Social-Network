@@ -12,10 +12,14 @@ const user = {
     userProfile: {},
     connexionMessage: "",
     updateMessage: "",
+    isAdmin: "",
   },
   mutations: {
     SET_THIS_USER(state, data) {
       state.userProfile = data;
+    },
+    SET_ADMIN(state,data){
+      state.isAdmin = data
     },
     SET_CONNEXION_MESSAGE(state, data) {
       state.connexionMessage = data;
@@ -49,9 +53,11 @@ const user = {
         })
           .then((resp) => {
             const token = resp.data.token;
+            const isAdmin = resp.data.is_admin;  
             localStorage.setItem("token", token);
             axios.defaults.headers.common["Authorization"] = "Bearer " + token; // set default headers with the token from response for next request
             commit("auth_success", token);
+            commit("SET_ADMIN", isAdmin)
             resolve(resp);
           })
           .catch((err) => {
@@ -155,6 +161,7 @@ const user = {
   getters: {
     isLoggedIn: (state) => !!state.token,
     authStatus: (state) => state.status,
+    isAdmin: (state) => state.isAdmin
   },
 };
 
