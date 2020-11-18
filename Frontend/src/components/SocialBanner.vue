@@ -43,9 +43,10 @@ export default {
     font-size: 25px;
     margin-right: 5px;
     margin-left: 25px;
+     color:#000000;
     &_content{
       font-weight: 600;
-      color:#263238;
+      color:#000000;
     }
   }
 }

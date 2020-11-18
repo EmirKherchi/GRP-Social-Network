@@ -6,15 +6,15 @@
     <hr />
     <div class="userBoard--info">
       <div class="userBoard--info__like">
-        <h5>
+        <h2>
           Nombre de publications : <span>{{ userProfile.all_posts }}</span>
-        </h5>
-        <h5>
+        </h2>
+        <h2>
           Likes Reçus : <span>{{ userProfile.all_likes }}</span>
-        </h5>
-        <h5>
+        </h2>
+        <h2>
           Dislikes Reçus : <span>{{ userProfile.all_dislikes }}</span>
-        </h5>
+        </h2>
       </div>
       <div class="userBoard--info__image">
         <b-img
@@ -89,6 +89,9 @@ export default {
     align-items: center;
     margin: 5%;
     &__like {
+      h2,h3{
+        font-size: 20px;
+      }
       order: 0;
       flex: 0 1 auto;
       align-self: center;

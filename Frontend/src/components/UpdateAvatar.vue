@@ -1,6 +1,6 @@
 <template>
   <div class="file">
-    <h4>Modifier votre image de profil</h4>
+    <h3>Modifier votre image de profil</h3>
     <form enctype="multipart/form-data" @submit.prevent="submit">
       <div class="field">
         <!-- <input type="file" ref="file" @change="onFileSelected" /> -->
@@ -26,7 +26,7 @@
       </div>
 
       <div class="message">
-        <h5>{{ updateMessage }}</h5>
+        <h4>{{ updateMessage }}</h4>
       </div>
     </form>
   </div>
@@ -71,7 +71,7 @@ export default {
 <style lang="scss" scoped>
 .file {
   margin-top: 100px;
-  h4 {
+  h3 {
     margin: 2%;
   }
   & input {

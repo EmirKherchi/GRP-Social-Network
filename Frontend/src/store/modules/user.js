@@ -17,6 +17,7 @@ const user = {
   mutations: {
     SET_THIS_USER(state, data) {
       state.userProfile = data;
+      state.isAdmin = data
     },
     SET_ADMIN(state,data){
       state.isAdmin = data
@@ -40,6 +41,7 @@ const user = {
     logout(state) {
       state.status = "";
       state.token = "";
+      state.isAdmin = "";
     },
   },
   actions: {
@@ -106,8 +108,10 @@ const user = {
           method: "GET",
         })
           .then((resp) => {
+            const isAdmin = resp.data.is_admin;
             const userProfile = resp.data;
             commit("SET_THIS_USER", userProfile);
+            commit("SET_ADMIN", isAdmin)
             resolve(resp);
           })
           .catch((err) => {

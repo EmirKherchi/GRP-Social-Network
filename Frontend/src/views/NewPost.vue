@@ -11,6 +11,7 @@
       <b-form-input
         class="input"
         required
+        id="title"
         v-model="title"
         type="text"
         placeholder="Titre"

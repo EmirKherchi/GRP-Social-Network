@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Groupomania -- réseau social</h1>
     <b-container class="login">
       <form @submit.prevent="login">
         <b-img
@@ -13,6 +14,7 @@
         <label for="email">Email</label>
         <b-form-input
           required
+          id="email"
           v-model="email"
           type="email"
           placeholder="Email"
@@ -22,6 +24,7 @@
         <label for="password">Mot de passe</label>
         <b-form-input
           required
+          id="password"
           type="password"
           v-model="password"
           placeholder="Mot de passe"
@@ -31,7 +34,7 @@
 
         <div><b-button class="btn" type="submit">Connexion</b-button></div>
         <div>
-          <h4>{{ connexionMessage }}</h4>
+          <h3>{{ connexionMessage }}</h3>
         </div>
       </form>
     </b-container>
@@ -66,6 +69,11 @@ export default {
 
 <style scoped lang="scss">
 .login {
+  h1,h3{
+    font-size: 24px;
+  }
+  
+  
   form {
     padding: 25px 0 50px 0;
     background: #0f4c81;

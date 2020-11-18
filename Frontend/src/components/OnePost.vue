@@ -43,8 +43,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .OnePost {
-  margin: 5px 0px 40px 0px;
-  
+  margin: 5px 0px 40px 0px;  
   border-radius: 3px;
   cursor: pointer;
   &__header {

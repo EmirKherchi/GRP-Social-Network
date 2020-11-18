@@ -5,7 +5,7 @@
       class="addPost"
       @submit.prevent="submitComment"
     >
-      <h4>Quelque chose à ajouter....</h4>
+      <label for="content"><h4>Quelque chose à ajouter....</h4></label>
       <b-form-textarea
         required
         v-model="content"
