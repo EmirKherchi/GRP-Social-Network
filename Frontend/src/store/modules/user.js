@@ -96,6 +96,7 @@ const user = {
     logout({ commit }) {
       return new Promise((resolve) => {
         commit("logout");
+        commit("SET_CONNEXION_MESSAGE", "");
         localStorage.removeItem("token");
         delete axios.defaults.headers.common["Authorization"];
         resolve();
