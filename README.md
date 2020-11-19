@@ -1,4 +1,6 @@
-Welcome sur mon projet - GRP Social Network - un reseau social 9gag like ! 
+
+####### Welcome sur mon projet - GRP Social Network - un reseau social 9gag like! ####### 
+
 
 -----------------Afin d'executer le projet---------------- 
 
@@ -22,13 +24,13 @@ Welcome sur mon projet - GRP Social Network - un reseau social 9gag like !
 
 -------------------------------------------------------------------------
 
-10 - Revenez à la racine du dossier cloné. 
+10- Revenez à la racine du dossier cloné. 
 
 11- Rendez-vous dans le dossier Frontend, une fois celui-ci ouvert dans le terminal tappez la commande suivant : $ npm install
 
 12- Une fois la commande executer tapez la commande suivante : $ npm run serve
 
-13 rendez-vous à l'adresse indiquer par Vue-cli dans votre terminal de commande afin d'accedez à l'application et de créer votre profile d'utilisateur. 
+13- Rendez-vous à l'adresse indiquer par Vue-cli dans votre terminal de commande afin d'accedez à l'application et de créer votre profile d'utilisateur. 
 
 -------------------------------------------------------------------------
 
