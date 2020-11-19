@@ -16,6 +16,7 @@ npm-debug.log*
 
 # Back
 Backend/config/config.json
+Backend/config/key.js
 Backend/images
 Backend/node_modules
 

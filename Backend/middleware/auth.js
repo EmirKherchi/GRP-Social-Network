@@ -1,13 +1,14 @@
 //Imports
 
 const jwt = require("jsonwebtoken");
-const JWT_SIGN_SECRET = "fAM6zvYJ3uK?6xEyUaJ-Yqu%FL9G34";
 const models = require("../models");
+const JWT_SIGN_SECRET = require('../config/key');
+
 
 module.exports = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const decodedToken = jwt.verify(token, JWT_SIGN_SECRET);
+    const decodedToken = jwt.verify(token, JWT_SIGN_SECRET.JWT_SIGN_SECRET);
     const user = await models.Users.findOne({
       where: {
         id: decodedToken.id,

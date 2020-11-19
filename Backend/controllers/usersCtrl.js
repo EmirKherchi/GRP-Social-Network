@@ -2,7 +2,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const models = require("../models");
-
+const JWT_SIGN_SECRET = require('../config/key');
 
 //constante
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -107,7 +107,7 @@ module.exports = {
             if (resBcrypt) {
               const token = jwt.sign(
                 { id: usersFound.id, is_admin: usersFound.is_admin },
-                "fAM6zvYJ3uK?6xEyUaJ-Yqu%FL9G34",
+                JWT_SIGN_SECRET.JWT_SIGN_SECRET,
                 {
                   expiresIn: "24h",
                 }
@@ -157,18 +157,6 @@ module.exports = {
     })
       .then(function (userFound) {
         if (userFound) {
-
-          // models.Comments.findAll({
-          //   where: { UserId: userFound.id },
-          // })
-          //   .then(function (allUserComments) {
-          //     if (allUserComments) {
-          //     }
-          //   })
-          //   .catch(function (err) {
-          //     return res.status(404).json(err);
-          //   });
-
           userFound.destroy();
           return res.status(200).json(userFound + "supprimé");
         } else {
@@ -181,8 +169,6 @@ module.exports = {
   },
 
   updateUserProfil: function (req, res) {
-    //params
-
     models.Users.findOne({
       attributes: ["id", "profil_image"],
       where: { id: req.user.id },
