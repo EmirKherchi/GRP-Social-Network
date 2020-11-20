@@ -107,6 +107,9 @@ html {
   text-align: center;
   color: #242f3a;
   background: #f2f3f7;
+  a{
+    text-decoration: none;
+  }
   ul {
     li {
       list-style: none;
@@ -149,15 +152,11 @@ html {
       }
     }
   }
-  .avatar_link {
-    text-decoration: none;
-  }
   .Avatar {
     justify-content: center;
     margin-left: 5px;
-
-    :hover {
-      text-decoration: none;
+    a,p{
+      text-decoration: #fff;
       color: #fff;
     }
   }

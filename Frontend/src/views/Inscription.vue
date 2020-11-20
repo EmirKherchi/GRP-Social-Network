@@ -25,13 +25,14 @@ export default {
 }
 .login {
   margin-top: 25px;
-  p {
+  p{
     margin-top: 25px;
     color: #000a12;
     .link {
       color: #0f4c81;
       font-weight: 600;
     }
+    
   }
 }
 </style>

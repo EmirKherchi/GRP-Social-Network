@@ -46,7 +46,6 @@ export default {
     text-transform: capitalize;
     & > p {
       margin: 0;
-      color: rgb(190, 190, 190);
       font-weight: 100;
     }
   }
