@@ -4,7 +4,7 @@
 
 -----------------Afin d'executer le projet---------------- 
 
-1 - Après avoir cloné le projet installer MySql su votre machine
+1 - Après avoir cloné le projet installer MySql sur votre machine
 
 2- Créer un dossier images dans le dossier Backend
 
