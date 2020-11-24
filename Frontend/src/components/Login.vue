@@ -57,6 +57,7 @@ export default {
     login() {
       let email = this.email;
       let password = this.password;
+      //Après Login appel des actions User pour récupérer le profil de l'user et renvoi vers le fil d'actus
       this.$store
         .dispatch("user/login", { email, password })
         .then(() => this.$store.dispatch("user/profile"))

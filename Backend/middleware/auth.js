@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const models = require("../models");
 const JWT_SIGN_SECRET = require('../config/key');
 
-
+//Fonction
 module.exports = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
@@ -18,6 +18,7 @@ module.exports = async (req, res, next) => {
       throw new Error();
     }
     req.user = user;
+    //Passe à l'étape suivante
     next();
   } catch (err) {
     console.log(err);

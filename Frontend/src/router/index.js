@@ -49,6 +49,8 @@ const router = new VueRouter({
   routes
 })
 
+
+// Vérifie que l'user est connecté sinon renvoi vers la page de connexion
 router.beforeEach((to, from, next) => {
   const publicPages = ['/connexion', '/inscription'];
   const authRequired = !publicPages.includes(to.path);

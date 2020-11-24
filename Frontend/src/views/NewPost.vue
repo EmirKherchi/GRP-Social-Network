@@ -59,6 +59,7 @@ export default {
     },
     submitPost() {
       const formData = new FormData();
+      //Création de l'objet FORMDATA
       formData.append("title", this.title);
       formData.append("file", this.file);
       this.$store

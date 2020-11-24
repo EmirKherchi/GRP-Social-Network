@@ -26,6 +26,7 @@ export default {
   },
   computed: {
     fullNameAlt() {
+      //Création d'un alt dynamiquement
       return `${this.UserFirstname} ${this.UserLastname} profil image`;
     },
   },

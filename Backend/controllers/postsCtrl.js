@@ -12,6 +12,7 @@ module.exports = {
     const title = req.body.title;
     const image_post = req.file;
 
+    //Vérifie la présence de params envoyés
     if (title == null || image_post == null) {
       res.status(400).json({ error: "missing parameters" });
     } else {
@@ -36,6 +37,7 @@ module.exports = {
             .then(function (newPosts) {
               if (newPosts) {
                 models.Users.update(
+                  //MaJ du compteur de post de l'utilisateur
                   { all_posts: sequelize.literal("all_posts + 1") },
                   { where: { id: req.user.id } }
                 );
@@ -51,7 +53,7 @@ module.exports = {
               return res.status(500).json({ error: "can't add Post" });
             });
         } else {
-          res.status(404).json({ error: "User not found" });
+          res.status(400).json({ error: "User not found" });
         }
       })
       .catch(function (err) {
@@ -61,8 +63,10 @@ module.exports = {
 
   listPosts: function (req, res) {
     models.Posts.findAll({
+      // envoi des post par date de création du plus récent au plus ancien
       order: [["createdAt", "DESC"]],
       include: [
+        // Ajout de data concernant les utilisateurs qui ont créer la publication
         {
           model: models.Users,
           attributes: ["firstname", "lastname", "profil_image"],
@@ -73,7 +77,7 @@ module.exports = {
         if (allPosts) {
           return res.status(200).json(allPosts);
         } else {
-          return res.status(404).json({ error: "Posts not found" });
+          return res.status(400).json({ error: "Posts not found" });
         }
       })
       .catch(function (err) {
@@ -85,6 +89,7 @@ module.exports = {
     const idPost = req.params.id;
 
     if (idPost == null) {
+      // vérification de la présence du params envoyé
       res.status(400).json({ error: "missing parameters" });
     }
 
@@ -99,6 +104,7 @@ module.exports = {
       ],
       include: [
         {
+          //Récupération des informations concernant l'utilisateur qui a crée le post
           model: models.Users,
           attributes: ["firstname", "lastname", "profil_image"],
         },
@@ -107,7 +113,7 @@ module.exports = {
     })
       .then(function (onePost) {
         if (!onePost) {
-          return res.status(404).json({ error: "Post not found" });
+          return res.status(401).json({ error: "Post not found" });
         }
         return res.status(201).json(onePost);
       })
@@ -119,6 +125,7 @@ module.exports = {
     const idPost = req.params.id;
 
     if (idPost == null) {
+      // vérification de la présence du params envoyé
       res.status(400).json({ error: "missing parameters" });
     }
     models.Posts.findOne({
@@ -130,6 +137,8 @@ module.exports = {
           const likes = onePost.likes;
           const dislikes = onePost.dislikes;
           onePost.destroy();
+   
+          //Maj des infos dans la BDD concernant le post
           models.Users.update(
             { all_posts: sequelize.literal("all_posts - 1") },
             { where: { id: user } }
@@ -144,7 +153,7 @@ module.exports = {
           );
           return res.status(200).json(" post supprimé ");
         } else {
-          return res.status(404).json({ error: "Post not found" });
+          return res.status(400).json({ error: "Post not found" });
         }
       })
       .catch(function (err) {

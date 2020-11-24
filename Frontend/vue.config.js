@@ -1,3 +1,5 @@
+//Module pour import d'image Bootstrap
+
 module.exports = {
     chainWebpack: config => {
       config.module

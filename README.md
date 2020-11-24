@@ -6,11 +6,43 @@
 
 1 - Après avoir cloné le projet installer MySql sur votre machine
 
-2- Créer un dossier images dans le dossier Backend
+2-  Créer un dossier config dans le dossier Backend.
 
-3-  Créer un dossier config dans le dossier Backend qui contiendra un fichier config.json (paramètre de connexion sequelize pour votre base de données) et un fichier key.js qui comprendra une variable globale à importer pour chiffrer votre TOKEN
+-------------------------------------------------------------------------
 
-4- Informez les deux fichiers précedement créer avec vos informations. 
+3- Au sein du dossier config créer un fichier config.json ajouter le code suivant et personnaliser les informations de connexion à votre base de données 
+
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
+
+-------------------------------------------------------------------------
+
+ 4 -Créer un fichier key.js dans le dossier config comme dans l'exemple suivant et personaliser votre clée de chiffrage: 
+  const JWT_SIGN_SECRET = "CléePerso";
+  exports.JWT_SIGN_SECRET = JWT_SIGN_SECRET;
+
+-------------------------------------------------------------------------
 
 5- Ouvrez le projet dans votre terminal. 
 

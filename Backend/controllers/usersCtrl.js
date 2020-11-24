@@ -2,9 +2,11 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const models = require("../models");
-const JWT_SIGN_SECRET = require('../config/key');
+
 
 //constante
+const JWT_SIGN_SECRET = require('../config/key');
+//REGES Pour vérif des inputs
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const passwordRegex = /^(?=.*\d).{4,15}$/;
 
@@ -26,6 +28,7 @@ module.exports = {
     ) {
       return res.status(400).json("Tous les champs ne sont pas complets");
     }
+    //test des inputs avec REGEX
     if (!passwordRegex.test(password)) {
       return res
         .status(400)
@@ -43,6 +46,7 @@ module.exports = {
     })
       .then(function (usersFound) {
         if (!usersFound) {
+          //Cryptage du MDP avant envoi dans BDD
           bcrypt.hash(password, 5, function (err, bcryptedPassword) {
             newUsers = models.Users.create({
               email: email,
@@ -67,11 +71,11 @@ module.exports = {
               });
           });
         } else {
-          return res.status(409).json("Utilisateur déjà existant");
+          return res.status(400).json("Utilisateur déjà existant");
         }
       })
       .catch(function (err) {
-        return res.status(500).json({ error: "unable to verify User" });
+        return res.status(500).json("Impossible de vérifier l'utilisateur");
       });
   },
 
@@ -80,10 +84,11 @@ module.exports = {
     const email = req.body.email;
     const password = req.body.password;
 
+    //Vérification des params envoyés
     if (email == null || password == null) {
       return res.status(400).json("Veuillez remplir tous les champs");
     }
-
+    //test des inputs avec REGEX
     if (!passwordRegex.test(password)) {
       return res
         .status(400)
@@ -119,12 +124,12 @@ module.exports = {
                 token: token,
               });
             } else {
-              return res.status(403).json("Mot de passe invalide");
+              return res.status(400).json("Mot de passe invalide");
             }
           });
         } else {
           return res
-            .status(404)
+            .status(400)
             .json("Impossible de trouver un utilisateur correspondant");
         }
       })
@@ -148,7 +153,10 @@ module.exports = {
   },
 
   deleteOneUser: async (req, res) => {
+
     const idUser = req.user.id;
+
+    //vérifs des params envoyés
     if (idUser == null) {
       res.status(400).json({ error: "missing parameters" });
     }
@@ -160,7 +168,7 @@ module.exports = {
           userFound.destroy();
           return res.status(200).json(userFound + "supprimé");
         } else {
-          return res.status(404).json({ error: "user not found" });
+          return res.status(400).json({ error: "user not found" });
         }
       })
       .catch(function (err) {
@@ -174,6 +182,7 @@ module.exports = {
       where: { id: req.user.id },
     }).then(function (users) {
       if (users) {
+        //récupération du FormDATA avec fichier image
         profil_image = req.file;
         users
           .update({
@@ -190,7 +199,7 @@ module.exports = {
               .json(console.log("This is the invalid field ->", err.field));
           });
       } else {
-        res.status(404).json("Utilisateur non trouvé");
+        res.status(400).json("Utilisateur non trouvé");
       }
     });
   },

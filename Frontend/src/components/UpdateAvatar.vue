@@ -34,6 +34,7 @@
 
 <script>
 import { mapState } from "vuex";
+//Plugins pour import d'image
 import PictureInput from "vue-picture-input";
 export default {
   name: "UpdateAvatar",

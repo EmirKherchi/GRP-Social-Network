@@ -112,7 +112,7 @@ export default {
       } else {
         this.pictureRequired = "";
         const formData = new FormData();
-
+        //Création de l'obejt FORMDATA
         formData.append("firstname", this.firstname);
         formData.append("lastname", this.lastname);
         formData.append("email", this.email);
@@ -124,6 +124,7 @@ export default {
           .then(() => {
             let router = this.$router;
             setTimeout(function() {
+              //Renvoi vers la page de connexion après 2sec
               router.push({ path: `/connexion` });
             }, 2000);
           })

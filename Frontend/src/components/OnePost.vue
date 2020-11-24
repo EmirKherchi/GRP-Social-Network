@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     sendRequest() {
+      // Vérifi si l'id dans l'url est le meme que présent si oui Goback au feed sinon renvoi vers la view POSTId avec en params l'id du post
       let id = this.id;
       if (id == this.$route.params.id) {
         this.$router.push({ path: `/posts/` });

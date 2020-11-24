@@ -125,6 +125,7 @@ export default {
       this.$store.dispatch("likes/dislikedIt");
     },
     animate() {
+      //Animation du like / Dislike
       this.animated = true;
     },
     deleteComment(commentId) {

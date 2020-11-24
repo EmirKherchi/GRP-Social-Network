@@ -80,6 +80,7 @@ export default {
       return this.$store.getters["user/isLoggedIn"];
     },
      isAdmin: function() {
+       //Vérifie si l'user is admin ou non
       return this.$store.getters["user/isAdmin"];
     },
     ...mapState("user", ["userProfile"]),

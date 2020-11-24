@@ -30,6 +30,7 @@ module.exports = {
                   },
                 })
                   .then(function (userOpinion) {
+                    // vérifie la présence d'un ligne dans la bdd avec un précédent LIKE/Dislike de l'utilisateur sur le post et met à jour celui-ci
                     if (
                       userOpinion &&
                       userOpinion.Like === 0 &&
@@ -117,21 +118,21 @@ module.exports = {
                     }
                   })
                   .catch(function (err) {
-                    console.log("userGaveHisOpinion: " + err);
+                    return res.status(500).json(err);
                   });
               } else {
-                return res.status(200).json("ne trouve pas l'user");
+                return res.status(400).json("ne trouve pas l'user");
               }
             })
             .catch(function (err) {
-              return res.status(500).json("Utilisateur Inconnu");
+              return res.status(400).json("Utilisateur Inconnu");
             });
         } else {
-          return res.status(404).json("Publication déjà likée");
+          return res.status(400).json("Publication déjà likée");
         }
       })
       .catch(function (err) {
-        return res.status(500).json("Publication inconnue");
+        return res.status(400).json("Publication inconnue");
       });
   },
 
@@ -159,6 +160,7 @@ module.exports = {
                   },
                 })
                   .then(function (userOpinion) {
+                     // vérifie la présence d'un ligne dans la bdd avec un précédent LIKE/Dislike de l'utilisateur sur le post et met à jour celui-ci
                     if (
                       userOpinion &&
                       userOpinion.Like === 1 &&
@@ -246,21 +248,21 @@ module.exports = {
                     }
                   })
                   .catch(function (err) {
-                    console.log("userGaveHisOpinion: " + err);
+                    return res.status(500).json(err);
                   });
               } else {
                 return res.status(200).json("ne trouve pas l'user");
               }
             })
             .catch(function (err) {
-              return res.status(500).json("Utilisateur Inconnu");
+              return res.status(400).json("Utilisateur Inconnu");
             });
         } else {
-          return res.status(404).json("Publication déjà likée");
+          return res.status(400).json("Publication déjà likée");
         }
       })
       .catch(function (err) {
-        return res.status(500).json("Publication inconnue");
+        return res.status(500).json(err);
       });
   },
 };

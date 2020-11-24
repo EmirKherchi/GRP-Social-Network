@@ -6,6 +6,7 @@ const models = require("../models");
 
 const JWT_SIGN_SECRET = require('../config/key');
 
+//Fonction
 module.exports = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
@@ -16,12 +17,14 @@ module.exports = async (req, res, next) => {
       },
     });
     if (user.is_admin !== true) {
+      //Vérification que l'user est admin
       throw new Error();
     }
+    //Passe à l'etape suivante
     next();
   } catch (err) {
     console.log(err);
-    res.status(401).send("You are not admin");
+    res.status(400).send("You are not admin");
   }
 };
 

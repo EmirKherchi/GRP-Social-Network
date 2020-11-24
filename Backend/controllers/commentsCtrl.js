@@ -49,12 +49,12 @@ module.exports = {
               }
             })
             .catch(function (err) {
-              return res.status(500).json("Utilisateur Inconnu");
+              return res.status(400).json("Utilisateur Inconnu");
             });
         }
       })
       .catch(function (err) {
-        return res.status(500).json(err);
+        return res.status(400).json(err);
       });
   },
 
@@ -71,6 +71,7 @@ module.exports = {
           models.Comments.findAll({
             where: { PostId: postFound.id },
             include: [
+              // Ajoute des infos sur l'utilisateur ayant commenté
               {
                 model: models.Users,
                 attributes: ["firstname", "lastname", "profil_image"],
@@ -81,7 +82,7 @@ module.exports = {
               if (allComments) {
                 return res.status(200).json(allComments);
               } else {
-                return res.status(404).json({ error: "comments not found" });
+                return res.status(400).json({ error: "comments not found" });
               }
             })
             .catch(function (err) {
@@ -90,7 +91,7 @@ module.exports = {
         }
       })
       .catch(function (err) {
-        return res.status(500).json({ err });
+        return res.status(400).json({ err });
       });
   },
   deleteOneComment: function (req, res) {
@@ -112,6 +113,7 @@ module.exports = {
               if (oneComment) {
                 oneComment.destroy();
                 models.Posts.update(
+                  // MaJ de la DB
                   { all_comments: sequelize.literal("all_comments - 1") },
                   { where: { id: idPost } }
                 );
@@ -119,10 +121,10 @@ module.exports = {
               }
             })
             .catch(function () {
-              return res.status(404).json({ error: "Comment not found" });
+              return res.status(400).json({ error: "Comment not found" });
             });
         } else {
-          return res.status(404).json({ error: "Post not found" });
+          return res.status(400).json({ error: "Post not found" });
         }
       })
       .catch(function (err) {
