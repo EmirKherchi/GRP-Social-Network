@@ -6,7 +6,7 @@
 
 1 - Après avoir cloné le projet installer MySql sur votre machine
 
-2-  Créer un dossier config dans le dossier Backend.
+2-  Créer un dossier config dans le dossier Backend ainsi que un dossier images.
 
 -------------------------------------------------------------------------
 
