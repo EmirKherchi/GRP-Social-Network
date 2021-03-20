@@ -52,6 +52,6 @@ app.use("/api/", commentsRouter);
 
 //Launch app
 
-app.listen(8080, function () {
+app.listen(process.env.PORT || 8080, function () {
   console.log("Server connected on port 8080");
 });
